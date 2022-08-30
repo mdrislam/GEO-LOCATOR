@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   var lat = 'Getting lat...'.obs;
   var long = 'Getting long...'.obs;
+  var address = 'Getting Address...'.obs;
   late StreamSubscription<Position> streamSubscription;
   @override
   void onInit() {
@@ -44,6 +46,15 @@ class HomeController extends GetxController {
       lat.value = position.latitude.toString();
       long.value = position.longitude.toString();
       print("${lat.value} - ${long.value}");
+      getAddress(position);
     });
+  }
+
+  Future<dynamic> getAddress(Position position) async {
+    List<Placemark> placemarkList =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    Placemark placemark = placemarkList[0];
+    address.value = "${placemark.locality},${placemark.country}";
+    print(placemark);
   }
 }

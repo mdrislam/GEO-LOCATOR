@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Center(
         child: Obx(() => Text(
-              'Latitude${controller.lat.value}\n Long${controller.long.value}\n',
+              'Latitude${controller.lat.value}\n Long${controller.long.value}\n Address :${controller.address.value}',
               style: const TextStyle(fontSize: 20),
             )),
       ),
