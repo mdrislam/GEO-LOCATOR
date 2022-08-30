@@ -9,14 +9,14 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeView'),
+        title: const Text('HomeView'),
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+        child: Obx(() => Text(
+              'Latitude${controller.lat.value}\n Long${controller.long.value}\n',
+              style: const TextStyle(fontSize: 20),
+            )),
       ),
     );
   }

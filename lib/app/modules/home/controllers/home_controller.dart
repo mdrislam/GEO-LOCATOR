@@ -42,7 +42,8 @@ class HomeController extends GetxController {
 
     streamSubscription = Geolocator.getPositionStream().listen((position) {
       lat.value = position.latitude.toString();
-      long.value = position.latitude.toString();
+      long.value = position.longitude.toString();
+      print("${lat.value} - ${long.value}");
     });
   }
 }
